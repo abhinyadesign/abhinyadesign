@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import Script from "next/script";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -52,6 +53,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans bg-[#0f2a36] text-[#f4f4f5] antialiased min-h-screen flex flex-col`}>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-VPWSD1H257"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-VPWSD1H257');
+          `}
+        </Script>
         <SmoothScroll>
           {children}
         </SmoothScroll>
