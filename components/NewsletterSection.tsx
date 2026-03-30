@@ -7,10 +7,27 @@ import { Send, CheckCircle } from "lucide-react";
 export default function NewsletterSection() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) setSubmitted(true);
+    if (!email) return;
+    
+    setIsSubmitting(true);
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -46,10 +63,11 @@ export default function NewsletterSection() {
               />
               <button
                 type="submit"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-xl hover:opacity-90 hover:-translate-y-0.5 transition-all shadow-lg shadow-secondary/20 whitespace-nowrap"
+                disabled={isSubmitting}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-xl hover:opacity-90 hover:-translate-y-0.5 transition-all shadow-lg shadow-secondary/20 whitespace-nowrap disabled:opacity-50"
               >
                 <Send className="w-4 h-4" />
-                Subscribe Free
+                {isSubmitting ? "Subscribing..." : "Subscribe Free"}
               </button>
             </form>
           )}

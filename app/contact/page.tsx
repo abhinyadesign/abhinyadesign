@@ -9,15 +9,36 @@ import { siteData } from "@/data/siteData";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const [form, setForm] = useState({ name: "", email: "", company: "", service: "", message: "" });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setErrorMsg("");
+    
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form)
+      });
+      
+      if (!res.ok) {
+        throw new Error("Failed to submit form");
+      }
+      
+      setSubmitted(true);
+    } catch (err) {
+      setErrorMsg("Something went wrong. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -127,10 +148,14 @@ export default function ContactPage() {
                         placeholder="Tell us about your project…" />
                     </div>
 
-                    <button type="submit"
-                      className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-secondary to-accent text-white font-bold rounded-xl hover:opacity-90 hover:-translate-y-0.5 transition-all shadow-lg shadow-secondary/20">
+                    {errorMsg && (
+                      <div className="text-red-400 text-sm">{errorMsg}</div>
+                    )}
+
+                    <button type="submit" disabled={isSubmitting}
+                      className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-secondary to-accent text-white font-bold rounded-xl hover:opacity-90 hover:-translate-y-0.5 transition-all shadow-lg shadow-secondary/20 disabled:opacity-50">
                       <Send className="w-4 h-4" />
-                      Send Message
+                      {isSubmitting ? "Sending..." : "Send Message"}
                     </button>
                   </form>
                 )}
