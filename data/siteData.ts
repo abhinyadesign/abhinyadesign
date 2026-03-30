@@ -6,14 +6,14 @@ export const siteData: SiteData = {
     tagline: "Transforming Ideas Into Digital Excellence",
     description:
       "We are a full-service IT and software company delivering cutting-edge digital solutions — from web development to enterprise software, UI/UX design, and cloud infrastructure.",
-    email: "hello@abhinyadesign.com",
-    phone: "+91 98765 43210",
-    address: "Hyderabad, Telangana, India",
+    email: "abhishek@abhinyadesign.com",
+    phone: "+91 6399889612",
+    address: "Sector 19 Noida, UP",
     socials: [
-      { platform: "Twitter", href: "#" },
-      { platform: "LinkedIn", href: "#" },
-      { platform: "Instagram", href: "#" },
-      { platform: "Github", href: "#" },
+      { platform: "LinkedIn", href: "https://www.linkedin.com/in/abhinya-design/" },
+      { platform: "Instagram", href: "https://instagram.com/abhinyadesign" },
+      { platform: "Facebook", href: "https://www.facebook.com/share/1DPMSv5nre/?mibextid=wwXIfr" },
+      { platform: "Github", href: "https://github.com/abhinyadesign" },
     ],
   },
 

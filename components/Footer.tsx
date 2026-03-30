@@ -1,14 +1,14 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Twitter, Linkedin, Instagram, Github, Mail, Phone, MapPin } from "lucide-react";
+import { Linkedin, Instagram, Github, Facebook, Mail, Phone, MapPin } from "lucide-react";
 import { siteData } from "@/data/siteData";
 
 const socialIcons: Record<string, React.ReactNode> = {
-  Twitter: <Twitter className="w-4 h-4" />,
   LinkedIn: <Linkedin className="w-4 h-4" />,
   Instagram: <Instagram className="w-4 h-4" />,
   Github: <Github className="w-4 h-4" />,
+  Facebook: <Facebook className="w-4 h-4" />,
 };
 
 export default function Footer() {
