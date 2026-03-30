@@ -55,7 +55,7 @@ export default function IndustriesSection() {
             Industries We <span className="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">Serve</span>
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto">
-            Deep domain expertise across 6+ verticals, delivering solutions that understand your industry's unique challenges.
+            Deep domain expertise across 6+ verticals, delivering solutions that understand your industry&apos;s unique challenges.
           </p>
         </AnimateIn>
 
