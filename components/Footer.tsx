@@ -20,10 +20,8 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-3 ">
-              <div className="relative w-40 h-40 flex items-center justify-center">
-                {/* Green Glow Background */}
-                <div className="absolute w-20 h-20 bg-secondary/40 blur-2xl rounded-full pointer-events-none" />
-                <Image src="/images/abhinyalogo.png" alt="Abhinya Design" fill className="object-contain relative z-10" />
+              <div className="relative w-40 h-40">
+                <Image src="/images/abhinyalogo.png" alt="Abhinya Design" fill className="object-contain" />
               </div>
               {/* <span className="text-xl font-bold text-white">
                 Abhinya<span className="text-secondary">Design</span>
